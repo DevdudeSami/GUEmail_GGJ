@@ -11,4 +11,6 @@ The game we developed for Global Game Jam 2018.
 - Yasmin Jamshidi
 - Noel Rajan
 
+## Status
+
 The game is under development. Updates soon!
