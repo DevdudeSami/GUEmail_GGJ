@@ -2,7 +2,7 @@
 The game we developed for Global Game Jam 2018.
 
 
-Participants
+## Participants
 
 - Youssef Moawad
 - Dasha Shumitskiy
