@@ -12,26 +12,29 @@ public class VirusMovementBehaviour : MonoBehaviour {
 	void Start () {
 		xSpeed = 0;
 		ySpeed = 0;
-		size = 5;
+		size = 3;
 	}
-
 
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
-
+		xSpeed = 0;
+		ySpeed = 0;
+		if (Input.GetKey(KeyCode.LeftArrow)) {
+			xSpeed = -0.1f + (0.02f * size);
+		} else if (Input.GetKey(KeyCode.RightArrow)) {
+			xSpeed = 0.1f - (0.02f * size);
+		} else if (Input.GetKey(KeyCode.UpArrow)) {
+			ySpeed = 0.1f - (0.02f * size);
+		} else if (Input.GetKey(KeyCode.DownArrow)) {
+			ySpeed = -0.1f + (0.02f * size);
 		}
-		if (Input.GetKeyDown(KeyCode.RightArrow)) {
+		this.transform.position += new Vector3(xSpeed, ySpeed, 0);
+	}
 
-		}
-		if (Input.GetKeyDown(KeyCode.UpArrow)) {
-
-		}
-		if (Input.GetKeyDown(KeyCode.DownArrow)) {
-
+	public void setSize(int n) {
+		if (n > 0 && n <= 5) {
+			size = n;
 		}
 	}
 
-	void changeSize(int n) {
-		
-	}
+
 }
