@@ -44,7 +44,9 @@ public class VirusMovementBehaviour : MonoBehaviour {
 			xSpeed = -speed;
 		} else if (Input.GetKey(KeyCode.RightArrow) && canMoveX) {
 			xSpeed = speed;
-		} else if (Input.GetKey(KeyCode.UpArrow) && canMoveY) {
+		} 
+
+		if (Input.GetKey(KeyCode.UpArrow) && canMoveY) {
 			ySpeed = speed;
 		} else if (Input.GetKey(KeyCode.DownArrow) && canMoveY) {
 			ySpeed = -speed;
