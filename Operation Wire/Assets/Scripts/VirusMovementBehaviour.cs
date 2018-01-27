@@ -5,6 +5,7 @@ using UnityEngine;
 public class VirusMovementBehaviour : MonoBehaviour {
 
 	private int size;
+	private bool colliding;
 
 	private float xSpeed;
 	private float ySpeed;
@@ -13,21 +14,34 @@ public class VirusMovementBehaviour : MonoBehaviour {
 		xSpeed = 0;
 		ySpeed = 0;
 		size = 3;
+		colliding = false;
 	}
 
 	void Update () {
 		xSpeed = 0;
 		ySpeed = 0;
-		if (Input.GetKey(KeyCode.LeftArrow)) {
-			xSpeed = -0.1f + (0.02f * size);
-		} else if (Input.GetKey(KeyCode.RightArrow)) {
-			xSpeed = 0.1f - (0.02f * size);
-		} else if (Input.GetKey(KeyCode.UpArrow)) {
-			ySpeed = 0.1f - (0.02f * size);
-		} else if (Input.GetKey(KeyCode.DownArrow)) {
-			ySpeed = -0.1f + (0.02f * size);
+		if (!colliding) {
+			if (Input.GetKey(KeyCode.LeftArrow)) {
+				xSpeed = -0.1f + (0.02f * size);
+			} else if (Input.GetKey(KeyCode.RightArrow)) {
+				xSpeed = 0.1f - (0.02f * size);
+			} else if (Input.GetKey(KeyCode.UpArrow)) {
+				ySpeed = 0.1f - (0.02f * size);
+			} else if (Input.GetKey(KeyCode.DownArrow)) {
+				ySpeed = -0.1f + (0.02f * size);
+			}
+			this.transform.position += new Vector3(xSpeed, ySpeed, 0);
 		}
-		this.transform.position += new Vector3(xSpeed, ySpeed, 0);
+	}
+
+	void OnCollisionEnter2D(Collision c) {
+		colliding = true;
+		print("WHY");
+	}
+
+	void OnTriggerEnter2D(Collider2D collision) {
+		colliding = true;
+		print("coll");
 	}
 
 	public void setSize(int n) {
