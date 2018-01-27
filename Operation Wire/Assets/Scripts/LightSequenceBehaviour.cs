@@ -5,6 +5,11 @@ using System.Linq;
 
 public class LightSequenceBehaviour : MonoBehaviour {
 
+	private AudioSource lightOnSound;
+	private AudioSource lightPressedSound;
+	private AudioSource correctSound;
+	private AudioSource wrongSound;
+
 	private int[] steps;
 	private int length = 3;
 	private int currentStep; // 0 to ...
@@ -25,6 +30,13 @@ public class LightSequenceBehaviour : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		AudioSource[] audios = gameObject.GetComponents<AudioSource>();
+
+		lightOnSound = audios[1];
+		lightPressedSound = audios[2];
+		correctSound = audios[3];
+		wrongSound = audios[4];
+
 		reset();
 	}
 	
@@ -52,6 +64,8 @@ public class LightSequenceBehaviour : MonoBehaviour {
 			
 			currentStep++;
 			isDead = true;
+
+			lightOnSound.Play();
 
 			if(currentStep == length) startCollectingInput();
 		}
@@ -95,10 +109,14 @@ public class LightSequenceBehaviour : MonoBehaviour {
 		clickedLights[lightStepWaiting] = lightIndex;
 		lightStepWaiting++;
 
+		lightPressedSound.Play();
+
 		if(lightStepWaiting == length) {
 			if(checkInput()) {
+				correctSound.Play();
 				shouldAllLightsBeGreen = true;
 			} else {
+				wrongSound.Play();
 				shouldAllLightsBeRed = true;
 			}
 
