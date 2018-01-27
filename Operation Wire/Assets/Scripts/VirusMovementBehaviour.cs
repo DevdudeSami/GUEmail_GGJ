@@ -4,40 +4,51 @@ using UnityEngine;
 
 public class VirusMovementBehaviour : MonoBehaviour {
 
-	private int size;
+	private float size;
 	private bool colliding;
 
 	private float xSpeed;
 	private float ySpeed;
 
+	public float getSize() {
+		return size;
+	}
+
 	void Start () {
 		xSpeed = 0;
 		ySpeed = 0;
-		size = 3;
+		size = 80;
 		colliding = false;
 	}
 
 	void Update () {
+		this.transform.localScale = new Vector3(0.1f + (size * 0.0125f), 0.1f + (size * 0.0125f), 1);
+
+		if (size <= 0) {
+			lose();
+		}
+
 		xSpeed = 0;
 		ySpeed = 0;
 		if (!colliding) {
 			if (Input.GetKey(KeyCode.LeftArrow)) {
-				xSpeed = -0.1f + (0.02f * size);
+				xSpeed = -0.03f;
 			} else if (Input.GetKey(KeyCode.RightArrow)) {
-				xSpeed = 0.1f - (0.02f * size);
+				xSpeed = 0.03f;
 			} else if (Input.GetKey(KeyCode.UpArrow)) {
-				ySpeed = 0.1f - (0.02f * size);
+				ySpeed = 0.03f;
 			} else if (Input.GetKey(KeyCode.DownArrow)) {
-				ySpeed = -0.1f + (0.02f * size);
+				ySpeed = -0.03f;
 			}
 			this.transform.position += new Vector3(xSpeed, ySpeed, 0);
 		}
 		colliding = false;
 	}
 
-	void OnCollisionEnter2D(Collision2D c) {
-		xSpeed = 0;
-		ySpeed= 0;
+	void OnCollisionEnter2D(Collision2D coll) {
+		// xSpeed = 0;
+		// ySpeed= 0;
+		if (coll.gameObject.GetComponent<EnemyBehaviour>()) size-=10;
 	}
 
 
@@ -45,6 +56,10 @@ public class VirusMovementBehaviour : MonoBehaviour {
 		if (n > 0 && n <= 5) {
 			size = n;
 		}
+	}
+
+	public void lose() {
+		Destroy(this.gameObject);
 	}
 
 
