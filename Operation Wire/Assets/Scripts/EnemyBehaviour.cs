@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyBehaviour : MonoBehaviour {
 	
 	public int[] direction;
-	public float speed = 0.02f;
+	public float speed;
 	private float distance = 0;
 	private Rigidbody2D enemy;
 	private int i = 0;
