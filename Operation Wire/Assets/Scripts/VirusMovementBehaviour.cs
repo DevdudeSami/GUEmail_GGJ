@@ -36,8 +36,8 @@ public class VirusMovementBehaviour : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D c) {
-		colliding = true;
-		print("WHY");
+		xSpeed = 0;
+		ySpeed= 0;
 	}
 
 
