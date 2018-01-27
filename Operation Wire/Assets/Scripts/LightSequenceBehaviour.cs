@@ -16,18 +16,21 @@ public class LightSequenceBehaviour : MonoBehaviour {
 	private const int deadTime = 15;
 	private int deadTimeTimer = 0;
 	
-	private bool isWaitingForUserInput = false;
+	public bool isWaitingForUserInput = false;
 	private int[] clickedLights;
 	private int lightStepWaiting = 0;
 
+	public bool shouldAllLightsBeRed = false;
+	public bool shouldAllLightsBeGreen = false;
+
 	// Use this for initialization
 	void Start () {
-		nextLevel();
+		reset();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(isWaitingForUserInput) {
+		if(isWaitingForUserInput || shouldAllLightsBeRed || shouldAllLightsBeGreen) {
 			return;
 		}
 
@@ -60,7 +63,16 @@ public class LightSequenceBehaviour : MonoBehaviour {
 		lightStepWaiting = 0;
 	}
 	
-	void nextLevel() {
+	IEnumerator nextLevel() {
+        yield return new WaitForSeconds(2);
+
+        reset();
+	}
+
+	void reset() {
+		shouldAllLightsBeGreen = false;
+        shouldAllLightsBeRed = false;
+
 		isWaitingForUserInput = false;
 		length++;
 		currentStep = 0;
@@ -85,14 +97,13 @@ public class LightSequenceBehaviour : MonoBehaviour {
 
 		if(lightStepWaiting == length) {
 			if(checkInput()) {
-				print("CORRECT");
+				shouldAllLightsBeGreen = true;
 			} else {
-				print("WRONG");
+				shouldAllLightsBeRed = true;
 			}
 
-			nextLevel();
+			isWaitingForUserInput = false;
+			StartCoroutine(nextLevel());
 		}
 	}
-
-
 }
