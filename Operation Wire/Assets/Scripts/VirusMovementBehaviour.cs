@@ -4,21 +4,27 @@ using UnityEngine;
 
 public class VirusMovementBehaviour : MonoBehaviour {
 
+	private const float speed = 2F;
+
 	private float size;
 	private bool colliding;
 
 	private float xSpeed;
 	private float ySpeed;
 
+	private Rigidbody2D rb;
+
 	public float getSize() {
 		return size;
 	}
 
-	void Start () {
+	void Awake () {
 		xSpeed = 0;
 		ySpeed = 0;
 		size = 80;
 		colliding = false;
+
+		rb = GetComponent<Rigidbody2D>();
 	}
 
 	void Update () {
@@ -31,21 +37,20 @@ public class VirusMovementBehaviour : MonoBehaviour {
 		xSpeed = 0;
 		ySpeed = 0;
 
-		Vector3 pos = this.transform.position;
-		bool canMoveX = pos.y % (((int) pos.y) != 0 ? ((int) pos.y) : 1) > 0.43f && pos.y % (((int) pos.y) != 0 ? ((int) pos.y) : 1) < 0.57f;
-		bool canMoveY = pos.x % (((int) pos.x) != 0 ? ((int) pos.x) : 1) < -0.43f && pos.x % (((int) pos.x) != 0 ? ((int) pos.x) : 1) > -0.57f;
-
+		bool canMoveX = true;
+		bool canMoveY = true;
 
 		if (Input.GetKey(KeyCode.LeftArrow) && canMoveX) {
-			xSpeed = -0.03f;
+			xSpeed = -speed;
 		} else if (Input.GetKey(KeyCode.RightArrow) && canMoveX) {
-			xSpeed = 0.03f;
+			xSpeed = speed;
 		} else if (Input.GetKey(KeyCode.UpArrow) && canMoveY) {
-			ySpeed = 0.03f;
+			ySpeed = speed;
 		} else if (Input.GetKey(KeyCode.DownArrow) && canMoveY) {
-			ySpeed = -0.03f;
+			ySpeed = -speed;
 		}
-		this.transform.position += new Vector3(xSpeed, ySpeed, 0);
+
+		rb.velocity = new Vector3(xSpeed, ySpeed, 0);
 
 		colliding = false;
 	}
