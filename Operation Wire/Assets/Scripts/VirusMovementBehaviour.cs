@@ -32,17 +32,14 @@ public class VirusMovementBehaviour : MonoBehaviour {
 			}
 			this.transform.position += new Vector3(xSpeed, ySpeed, 0);
 		}
+		colliding = false;
 	}
 
-	void OnCollisionEnter2D(Collision c) {
+	void OnCollisionEnter2D(Collision2D c) {
 		colliding = true;
 		print("WHY");
 	}
 
-	void OnTriggerEnter2D(Collider2D collision) {
-		colliding = true;
-		print("coll");
-	}
 
 	public void setSize(int n) {
 		if (n > 0 && n <= 5) {
