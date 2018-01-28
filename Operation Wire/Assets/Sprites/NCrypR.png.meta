@@ -1,12 +1,6 @@
 fileFormatVersion: 2
 guid: e2aa279dc82fa42c68934cb24d343b75
-<<<<<<< HEAD
-timeCreated: 1517100538
-licenseType: Free
-TextureImporter:
-  fileIDToRecycleName: {}
-=======
-timeCreated: 1517140592
+timeCreated: 1517141385
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -23,7 +17,6 @@ TextureImporter:
     21300020: NCrypR_10
     21300022: NCrypR_11
     21300024: NCrypR_12
->>>>>>> art
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -51,7 +44,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -1
     wrapU: 1
@@ -60,11 +53,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-<<<<<<< HEAD
-  spriteMode: 1
-=======
   spriteMode: 2
->>>>>>> art
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -89,11 +78,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-<<<<<<< HEAD
-  spriteSheet:
-    serializedVersion: 2
-    sprites: []
-=======
     androidETC2FallbackOverride: 0
   - buildTarget: Standalone
     maxTextureSize: 2048
@@ -290,7 +274,6 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
->>>>>>> art
     outline: []
     physicsShape: []
   spritePackingTag: 

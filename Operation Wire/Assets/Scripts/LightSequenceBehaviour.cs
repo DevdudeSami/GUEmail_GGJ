@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 
 public class LightSequenceBehaviour : MonoBehaviour {
@@ -28,6 +29,9 @@ public class LightSequenceBehaviour : MonoBehaviour {
 	public bool shouldAllLightsBeRed = false;
 	public bool shouldAllLightsBeGreen = false;
 
+	public Sprite[] backgrounds;
+	private Image image;
+
 	// Use this for initialization
 	void Start () {
 		AudioSource[] audios = gameObject.GetComponents<AudioSource>();
@@ -37,12 +41,21 @@ public class LightSequenceBehaviour : MonoBehaviour {
 		correctSound = audios[3];
 		wrongSound = audios[4];
 
+		image = gameObject.GetComponent<Image>();
+
 		reset();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(isWaitingForUserInput || shouldAllLightsBeRed || shouldAllLightsBeGreen) {
+			
+			if(shouldAllLightsBeGreen) {
+				image.sprite = backgrounds[2];
+			} else if(shouldAllLightsBeRed) {
+				image.sprite = backgrounds[1];
+			}
+
 			return;
 		}
 
@@ -53,10 +66,17 @@ public class LightSequenceBehaviour : MonoBehaviour {
 				isDead = false;
 				deadTimeTimer = 0;
 			}
-			
+
+			image.sprite = backgrounds[0];
 			return;
 		}
 		
+		for(int i = 0; i < 5; i++) {
+			if(lightShouldBeOn(i)) {
+				image.sprite = backgrounds[3+i];
+			}
+		}
+
 		timeLeftToNextStep++;
 		
 		if (timeLeftToNextStep >= timeBetweenLights) {
@@ -72,6 +92,7 @@ public class LightSequenceBehaviour : MonoBehaviour {
 	}
 
 	void startCollectingInput() {
+		image.sprite = backgrounds[0];
 		isWaitingForUserInput = true;
 		clickedLights = new int[length];
 		lightStepWaiting = 0;
@@ -101,11 +122,15 @@ public class LightSequenceBehaviour : MonoBehaviour {
 		return clickedLights.SequenceEqual(steps);
 	}
 	
-	public bool lightShouldBeOn(int lightIndex) {
+	private bool lightShouldBeOn(int lightIndex) {
 		return !isDead && lightIndex == steps[currentStep];
 	}
 
-	public void lightClicked(int lightIndex) {
+	public void lightDown(int lightIndex) {
+		image.sprite = backgrounds[8+lightIndex];
+	}
+
+	public void lightUp(int lightIndex) {
 		clickedLights[lightStepWaiting] = lightIndex;
 		lightStepWaiting++;
 
@@ -123,5 +148,7 @@ public class LightSequenceBehaviour : MonoBehaviour {
 			isWaitingForUserInput = false;
 			StartCoroutine(nextLevel());
 		}
+
+		image.sprite = backgrounds[0];
 	}
 }
