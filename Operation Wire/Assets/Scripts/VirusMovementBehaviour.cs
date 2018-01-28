@@ -22,6 +22,8 @@ public class VirusMovementBehaviour : MonoBehaviour {
 	private PowerUp currentPowerUp;
 	public enum PowerUp {SPEED, INVINCIBILITY, SLOW}
 
+	private bool invincible;
+
 	public float getSize() {
 		return size;
 	}
@@ -41,7 +43,9 @@ public class VirusMovementBehaviour : MonoBehaviour {
 	void Update () {
 		xSpeed = 0;
         ySpeed = 0;
+
 		dynamicSpeed = speed;
+		invincible = false;
 
 		if (powerUpRemaining > 0) {
 			applyPowerUp();
@@ -76,7 +80,7 @@ public class VirusMovementBehaviour : MonoBehaviour {
 		print("collision with " + coll.gameObject.name);
 		// xSpeed = 0;
 		// ySpeed= 0;
-		if (coll.gameObject.GetComponent<EnemyBehaviour>()) lose();
+		if (coll.gameObject.GetComponent<EnemyBehaviour>()) loseSize(80);
 
 
 		FolderBehaviour folder = coll.gameObject.GetComponent<FolderBehaviour>();
@@ -96,8 +100,9 @@ public class VirusMovementBehaviour : MonoBehaviour {
 		}
 	}
 
-	public void givePowerUp(PowerUp pup) {
-
+	public void givePowerUp(PowerUp pup, int duration) {
+		currentPowerUp = pup;
+		powerUpRemaining = duration;
 	}
 
 	void applyPowerUp() {
@@ -108,6 +113,9 @@ public class VirusMovementBehaviour : MonoBehaviour {
 			case (PowerUp.SLOW):
 				dynamicSpeed = dynamicSpeed * 1.5f;
 				break;
+			case (PowerUp.INVINCIBILITY):
+				invincible = true;
+				break;
 			default:
 				break;
 		}
@@ -115,6 +123,8 @@ public class VirusMovementBehaviour : MonoBehaviour {
 
 
 	public void loseSize(int n) {
+		if (invincible) return;
+
 		size -= n;
 		if (size < 0) {
 			size = 0;
