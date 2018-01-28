@@ -6,6 +6,7 @@ public class VirusMovementBehaviour : MonoBehaviour {
 
 
 	private const float speed = 2f;
+	private float dynamicSpeed;
 	private Rigidbody2D rb;
 
 	public InventoryBehaviour inventory;
@@ -13,9 +14,13 @@ public class VirusMovementBehaviour : MonoBehaviour {
 	public int size = 80;
 	private bool colliding;
 
-
 	private float xSpeed;
 	private float ySpeed;
+
+	private int powerUpRemaining = 0;
+
+	private PowerUp currentPowerUp;
+	public enum PowerUp {SPEED, INVINCIBILITY, SLOW}
 
 	public float getSize() {
 		return size;
@@ -34,25 +39,32 @@ public class VirusMovementBehaviour : MonoBehaviour {
 	}
 
 	void Update () {
+		xSpeed = 0;
+        ySpeed = 0;
+		dynamicSpeed = speed;
+
+		if (powerUpRemaining > 0) {
+			applyPowerUp();
+			powerUpRemaining--;
+		}
+
         this.transform.localScale = new Vector3(0.1f + (size * 0.0125f), 0.1f + (size * 0.0125f), 1);
 
         if (size <= 0) {
             lose();
         }
 
-        xSpeed = 0;
-        ySpeed = 0;
 
         if (Input.GetKey(KeyCode.LeftArrow)) {
-            xSpeed = -speed;
+            xSpeed = -dynamicSpeed;
         } else if (Input.GetKey(KeyCode.RightArrow)) {
-            xSpeed = speed;
+            xSpeed = dynamicSpeed;
         }
 
         if (Input.GetKey(KeyCode.UpArrow)) {
-            ySpeed = speed;
+            ySpeed = dynamicSpeed;
         } else if (Input.GetKey(KeyCode.DownArrow)) {
-            ySpeed = -speed;
+            ySpeed = -dynamicSpeed;
         }
 
         rb.velocity = new Vector3(xSpeed, ySpeed, 0);
@@ -65,25 +77,39 @@ public class VirusMovementBehaviour : MonoBehaviour {
 		// xSpeed = 0;
 		// ySpeed= 0;
 		if (coll.gameObject.GetComponent<EnemyBehaviour>()) lose();
-		KeyBehaviour key = coll.gameObject.GetComponent<KeyBehaviour>();
+
 
 		FolderBehaviour folder = coll.gameObject.GetComponent<FolderBehaviour>();
 		if (folder != null) {
 			if (folder.locked == true) {
 				if (folder.colour == "red" && this.inventory.redKey == true) {
-					folder.locked = false;
 					this.inventory.redKey = false;
-					folder.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+					folder.unlock();
 				} else if (folder.colour == "yellow" && this.inventory.yellowKey == true) {
-					folder.locked = false;
 					this.inventory.yellowKey = false;
-					folder.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+					folder.unlock();
 				} else if (folder.colour == "blue" && this.inventory.blueKey == true) {
-					folder.locked = false;
 					this.inventory.blueKey = false;
-					folder.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+					folder.unlock();
 				}
 			}
+		}
+	}
+
+	public void givePowerUp(PowerUp pup) {
+
+	}
+
+	void applyPowerUp() {
+		switch (currentPowerUp) {
+			case (PowerUp.SPEED):
+				dynamicSpeed = dynamicSpeed * 0.6f;
+				break;
+			case (PowerUp.SLOW):
+				dynamicSpeed = dynamicSpeed * 1.5f;
+				break;
+			default:
+				break;
 		}
 	}
 
