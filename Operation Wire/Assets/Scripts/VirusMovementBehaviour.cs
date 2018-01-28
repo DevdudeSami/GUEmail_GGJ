@@ -6,7 +6,7 @@ public class VirusMovementBehaviour : MonoBehaviour {
 
 
 	private const float speed = 2f;
-	private RigidBody2D rb;
+	private Rigidbody2D rb;
 
 	public GameObject keys;
 	public GameObject folders;
@@ -31,7 +31,7 @@ public class VirusMovementBehaviour : MonoBehaviour {
 
 	void Awake () {
 		inventory = this.gameObject.GetComponent<InventoryBehaviour>();
-		rb = this.gameObject.GetComponent<RigidBody2D>();
+		rb = this.gameObject.GetComponent<Rigidbody>();
 	}
 
 	void Update () {
