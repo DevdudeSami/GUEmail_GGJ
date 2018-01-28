@@ -10,6 +10,7 @@ public class VirusMovementBehaviour : MonoBehaviour {
 	private Rigidbody2D rb;
 
 	public InventoryBehaviour inventory;
+	public int totalValue = 0;
 
 	public int size = 80;
 
@@ -118,10 +119,10 @@ public class VirusMovementBehaviour : MonoBehaviour {
 	void applyPowerUp() {
 		switch (currentPowerUp) {
 			case (PowerUp.SPEED):
-				dynamicSpeed = dynamicSpeed * 0.6f;
+				dynamicSpeed = dynamicSpeed * 1.5f;
 				break;
 			case (PowerUp.SLOW):
-				dynamicSpeed = dynamicSpeed * 1.5f;
+				dynamicSpeed = dynamicSpeed * 0.6f;
 				break;
 			case (PowerUp.INVINCIBILITY):
 				invincible = true;

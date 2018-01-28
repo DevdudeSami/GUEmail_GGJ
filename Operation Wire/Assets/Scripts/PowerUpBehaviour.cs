@@ -19,7 +19,7 @@ public class PowerUpBehaviour : MonoBehaviour {
 
 			if (rnd.Next(1, 10) == 1) {
 				pup = VirusMovementBehaviour.PowerUp.INVINCIBILITY;
-			} else if (rnd.Next(1, 10) < 7) {
+			} else if (rnd.Next(1, 10) < 8) {
 				pup = VirusMovementBehaviour.PowerUp.SPEED;
 			} else {
 				pup = VirusMovementBehaviour.PowerUp.SLOW;
