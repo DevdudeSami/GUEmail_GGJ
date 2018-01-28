@@ -8,8 +8,6 @@ public class VirusMovementBehaviour : MonoBehaviour {
 	private const float speed = 2f;
 	private Rigidbody2D rb;
 
-	public GameObject keys;
-	public GameObject folders;
 	public InventoryBehaviour inventory;
 
 	public int size = 80;
