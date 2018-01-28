@@ -12,7 +12,6 @@ public class VirusMovementBehaviour : MonoBehaviour {
 	public InventoryBehaviour inventory;
 
 	public int size = 80;
-	private bool colliding;
 
 	private float xSpeed;
 	private float ySpeed;
@@ -32,7 +31,6 @@ public class VirusMovementBehaviour : MonoBehaviour {
 		xSpeed = 0;
 		ySpeed = 0;
 
-		colliding = false;
 	}
 
 	void Awake () {
@@ -73,14 +71,26 @@ public class VirusMovementBehaviour : MonoBehaviour {
 
         rb.velocity = new Vector3(xSpeed, ySpeed, 0);
 
-        colliding = false;
+        // change animation sprite
+		changeAnimation();
     }
+
+	void changeAnimation() {
+		if (invincible) {
+			
+		} else {
+
+		}
+	}
 
 	void OnCollisionEnter2D(Collision2D coll) {
 		print("collision with " + coll.gameObject.name);
 		// xSpeed = 0;
 		// ySpeed= 0;
-		if (coll.gameObject.GetComponent<EnemyBehaviour>()) loseSize(80);
+		if (coll.gameObject.GetComponent<EnemyBehaviour>()) {
+			loseSize(35);
+			givePowerUp(PowerUp.INVINCIBILITY, 50);
+		}
 
 
 		FolderBehaviour folder = coll.gameObject.GetComponent<FolderBehaviour>();
