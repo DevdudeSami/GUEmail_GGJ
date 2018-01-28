@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class VirusMovementBehaviour : MonoBehaviour {
 
+
+	private const float speed = 2f;
+
 	public GameObject keys;
 	public GameObject folders;
 	public InventoryBehaviour inventory;
@@ -30,30 +33,34 @@ public class VirusMovementBehaviour : MonoBehaviour {
 	}
 
 	void Update () {
-		this.transform.localScale = new Vector3(0.1f + (size * 0.0125f), 0.1f + (size * 0.0125f), 1);
+        this.transform.localScale = new Vector3(0.1f + (size * 0.0125f), 0.1f + (size * 0.0125f), 1);
 
-		if (size <= 0) {
-			lose();
-		}
+        if (size <= 0) {
+            lose();
+        }
 
-		xSpeed = 0;
-		ySpeed = 0;
-		if (!colliding) {
-			if (Input.GetKey(KeyCode.LeftArrow)) {
-				xSpeed = -0.03f;
-			} else if (Input.GetKey(KeyCode.RightArrow)) {
-				xSpeed = 0.03f;
-			} else if (Input.GetKey(KeyCode.UpArrow)) {
-				ySpeed = 0.03f;
-			} else if (Input.GetKey(KeyCode.DownArrow)) {
-				ySpeed = -0.03f;
-			}
-			this.transform.position += new Vector3(xSpeed, ySpeed, 0);
-		}
-		colliding = false;
-	}
+        xSpeed = 0;
+        ySpeed = 0;
+
+        if (Input.GetKey(KeyCode.LeftArrow) && canMoveX) {
+            xSpeed = -speed;
+        } else if (Input.GetKey(KeyCode.RightArrow) && canMoveX) {
+            xSpeed = speed;
+        }
+
+        if (Input.GetKey(KeyCode.UpArrow) && canMoveY) {
+            ySpeed = speed;
+        } else if (Input.GetKey(KeyCode.DownArrow) && canMoveY) {
+            ySpeed = -speed;
+        }
+
+        rb.velocity = new Vector3(xSpeed, ySpeed, 0);
+
+        colliding = false;
+    }
 
 	void OnCollisionEnter2D(Collision2D coll) {
+		print("collision with " + coll.gameObject.name);
 		// xSpeed = 0;
 		// ySpeed= 0;
 		if (coll.gameObject.GetComponent<EnemyBehaviour>()) size-=10;
