@@ -12,7 +12,7 @@ public class HUDBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		virus = virusObject.GetComponent<VirusMovementBehaviour>();
-		hud = this.gameObject.transform.GetChild(0);
+		hud = this.gameObject.transform.GetChild(0).gameObject;
 	}
 
 	// Update is called once per frame
