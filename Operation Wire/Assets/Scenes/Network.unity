@@ -14369,7 +14369,7 @@ Prefab:
     - target: {fileID: 114132498804304004, guid: 2c6e0a0db1e1c4f54b2e73329f013c58,
         type: 2}
       propertyPath: linkedScene
-      value: Minigame
+      value: Level 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2c6e0a0db1e1c4f54b2e73329f013c58, type: 2}
