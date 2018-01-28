@@ -19,7 +19,7 @@ public class MainMenuBehaviour : MonoBehaviour{
 
 	public void goToScene() {
 		print("Loading");
-		SceneManager.LoadScene("Level 1", LoadSceneMode.Single);
+		SceneManager.LoadScene("Network", LoadSceneMode.Single);
 	}
 
 
