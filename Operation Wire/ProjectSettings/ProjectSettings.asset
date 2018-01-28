@@ -630,12 +630,14 @@ PlayerSettings:
     daydream:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Collab: 1
+    UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 809f80fd-b7c3-47d1-a65b-f6074c513f94
+  cloudProjectId: 2ef7c7b4-4245-4621-9720-47ebfdeea1fc
   projectName: Operation Wire
-  organizationId: devdudesami
+  organizationId: rajannoel13
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

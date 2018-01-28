@@ -41,3 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: FolderNameLayer
+    uniqueID: 1084220187
+    locked: 1
+  - name: PowerUpLayer
+    uniqueID: 674388173
+    locked: 0
+  - name: PowerUpLayer
+    uniqueID: 1354138111
+    locked: 0
+  - name: AntivirusLayer
+    uniqueID: 59368133
+    locked: 0
+  - name: VirusLayer
+    uniqueID: 2922954373
+    locked: 0
+  - name: HUDLayer
+    uniqueID: 1219142231
+    locked: 0
