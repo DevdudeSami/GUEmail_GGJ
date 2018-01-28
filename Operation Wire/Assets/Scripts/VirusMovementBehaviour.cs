@@ -12,8 +12,9 @@ public class VirusMovementBehaviour : MonoBehaviour {
 	public GameObject folders;
 	public InventoryBehaviour inventory;
 
-	private float size;
+	public int size = 80;
 	private bool colliding;
+
 
 	private float xSpeed;
 	private float ySpeed;
@@ -25,7 +26,7 @@ public class VirusMovementBehaviour : MonoBehaviour {
 	void Start () {
 		xSpeed = 0;
 		ySpeed = 0;
-		size = 80;
+
 		colliding = false;
 	}
 
