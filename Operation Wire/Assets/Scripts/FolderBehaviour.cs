@@ -14,6 +14,8 @@ public class FolderBehaviour : MonoBehaviour {
 			locked = false;
 			this.GetComponent<BoxCollider2D>().enabled = false;
 			this.GetComponent<SpriteRenderer>().sprite = plainFolder;
+			AudioSource unlockAudio = GetComponent<AudioSource>();
+			unlockAudio.Play();
 		}
 	}
 
