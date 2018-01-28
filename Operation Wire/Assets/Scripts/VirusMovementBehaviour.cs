@@ -31,7 +31,7 @@ public class VirusMovementBehaviour : MonoBehaviour {
 
 	void Awake () {
 		inventory = this.gameObject.GetComponent<InventoryBehaviour>();
-		rb = this.gameObject.GetComponent<Rigidbody>();
+		rb = this.gameObject.GetComponent<Rigidbody2D>();
 	}
 
 	void Update () {
