@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HUDBehaviour : MonoBehaviour {
+
+	public int targetValue = -1;
 
 	public GameObject virusObject;
 	private VirusMovementBehaviour virus;
@@ -66,6 +69,11 @@ public class HUDBehaviour : MonoBehaviour {
 
 
 		// update value
+		if (targetValue > 0 && virus.totalValue >= targetValue) {
+			val.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Return to the root and exit";
+		} else {
+			val.transform.GetChild(0).gameObject.GetComponent<Text>().text = virus.totalValue.ToString();
+		}
 
 
 
