@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class MainMenuBehaviour : MonoBehaviour {
+public class MainMenuBehaviour : MonoBehaviour, IPointerClickHandler, IPointerDownHandler {
 
-	private Button btn;
 
-	// Use this for initialization
-	void Awake () {
-		btn = this.gameObject.GetComponent<Button>();
+	public void OnPointerClick(PointerEventData eventData) {
 		print("Loading");
-		btn.onClick.AddListener(TaskOnClick);
+		SceneManager.LoadScene("Level 1", LoadSceneMode.Single);
+
 	}
 
-	// Update is called once per frame
-	void TaskOnClick() {
+
+
+	public void OnPointerDown(PointerEventData eventData) {
 		print("Loading");
 		SceneManager.LoadScene("Level 1", LoadSceneMode.Single);
 	}
+
+
+
 }
