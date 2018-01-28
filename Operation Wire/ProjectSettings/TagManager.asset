@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: FolderNameLayer
     uniqueID: 1084220187
+    locked: 1
+  - name: PowerUpLayer
+    uniqueID: 674388173
     locked: 0
   - name: AntivirusLayer
     uniqueID: 59368133
