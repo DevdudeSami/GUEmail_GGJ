@@ -7,7 +7,8 @@ public class EnemyBehaviour : MonoBehaviour {
 
 	public int[] direction;
 	public float speed = 0.02f;
-	private float distance = 0;
+	public int intSpeed = 2;
+	private int distance = 0;
 	private Rigidbody2D enemy;
 	private int index = 0;
 
@@ -19,8 +20,8 @@ public class EnemyBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (distance >= 1) {
-			distance = 0f;
+		if (distance >= 100) {
+			distance = 0;
 			goToNextPoint();
 		}
 
@@ -29,7 +30,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		else if (direction[index] == 2) this.transform.position += new Vector3(0, -speed, 0);
 		else if (direction[index] == 3) this.transform.position += new Vector3(-speed, 0, 0);
 
-		distance += speed;
+		distance += intSpeed;
 
 	}
 

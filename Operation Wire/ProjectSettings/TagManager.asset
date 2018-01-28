@@ -56,3 +56,6 @@ TagManager:
   - name: VirusLayer
     uniqueID: 2922954373
     locked: 0
+  - name: HUDLayer
+    uniqueID: 1219142231
+    locked: 0
