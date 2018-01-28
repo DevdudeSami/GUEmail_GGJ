@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 5d5d5eada50f6433c9a8ef52385427b9
 timeCreated: 1517143253
+=======
+guid: e03623cbb3baf48ebb8c36bc49a05012
+timeCreated: 1517056266
+>>>>>>> origin/enemy-movement
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
