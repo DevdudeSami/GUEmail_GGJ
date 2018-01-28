@@ -7,11 +7,15 @@ public class FileBehaviour : MonoBehaviour {
 	private bool hovering;
 	private bool isOpen;
 
+	private bool opened;
+
 	private int delay = 0;
 
 	private GameObject canvas;
 
 	public int value = 0;
+
+	VirusMovementBehaviour vir;
 
 	public int getValue() {
 		return value;
@@ -22,6 +26,7 @@ public class FileBehaviour : MonoBehaviour {
 		print(canvas.name);
 		hovering = false;
 		isOpen = false;
+		opened = false;
 	}
 
 	void Update() {
@@ -32,6 +37,7 @@ public class FileBehaviour : MonoBehaviour {
 
 		if (hovering && Input.GetKey(KeyCode.Space)) {
 			print("OPEN FILE");
+
 			open();
 			// actually open file
 
@@ -44,6 +50,7 @@ public class FileBehaviour : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D coll) {
 		VirusMovementBehaviour virus = coll.gameObject.GetComponent<VirusMovementBehaviour>();
 		if (virus != null) {
+			vir = virus;
 			hovering = true;
 			// display prompt
 			canvas.SetActive(true);
@@ -68,6 +75,10 @@ public class FileBehaviour : MonoBehaviour {
 	}
 
 	public void open() {
+		if (!opened) {
+			vir.totalValue += this.getValue();
+		}
+		opened = true;
 		delay = 40;
 		// isOpen = true;
 		canvas.gameObject.transform.GetChild(0).gameObject.SetActive(true);
