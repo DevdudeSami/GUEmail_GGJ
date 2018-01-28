@@ -65,7 +65,7 @@ public class VirusMovementBehaviour : MonoBehaviour {
 		print("collision with " + coll.gameObject.name);
 		// xSpeed = 0;
 		// ySpeed= 0;
-		if (coll.gameObject.GetComponent<EnemyBehaviour>()) size-=10;
+		if (coll.gameObject.GetComponent<EnemyBehaviour>()) lose();
 		KeyBehaviour key = coll.gameObject.GetComponent<KeyBehaviour>();
 		if (key != null) {
 			if (key.colour == "red" && this.inventory.redKey != true) this.inventory.redKey = true;
