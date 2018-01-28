@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VirusMovementBehaviour : MonoBehaviour {
 
@@ -153,7 +154,7 @@ public class VirusMovementBehaviour : MonoBehaviour {
 	}
 
 	public void lose() {
-		Destroy(this.gameObject);
+		SceneManager.LoadScene("Lose", LoadSceneMode.Single);
 	}
 
 
