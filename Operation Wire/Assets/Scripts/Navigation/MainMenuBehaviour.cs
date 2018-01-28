@@ -5,22 +5,22 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class MainMenuBehaviour : MonoBehaviour, IPointerClickHandler, IPointerDownHandler {
+public class MainMenuBehaviour : MonoBehaviour{
 
+	public Button yourButton;
 
-	public void OnPointerClick(PointerEventData eventData) {
-		print("Loading");
-		SceneManager.LoadScene("Level 1", LoadSceneMode.Single);
-
+	void Start() {
+		print("start");
+		Button btn = yourButton.GetComponent<Button>();
+		btn.onClick.AddListener(goToScene);
 	}
 
 
 
-	public void OnPointerDown(PointerEventData eventData) {
+	public void goToScene() {
 		print("Loading");
 		SceneManager.LoadScene("Level 1", LoadSceneMode.Single);
 	}
-
 
 
 }
