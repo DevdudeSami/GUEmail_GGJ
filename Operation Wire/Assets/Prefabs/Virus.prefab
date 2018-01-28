@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 95085394910488770}
   - component: {fileID: 61349272771070260}
   - component: {fileID: 114534434941096290}
+  - component: {fileID: 58826052053942810}
   m_Layer: 0
   m_Name: Virus
   m_TagString: Untagged
@@ -56,7 +57,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 1
-  m_Mass: 0.0008342947
+  m_Mass: 0.0019074038
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -64,14 +65,29 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!58 &58826052053942810
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1177819205914096}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.012522936}
+  serializedVersion: 2
+  m_Radius: 0.024640322
 --- !u!61 &61349272771070260
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1177819205914096}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: d81c5c793b3b247409bf380f63ac1823, type: 2}
   m_IsTrigger: 0
@@ -118,8 +134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9ecfb97c1ec141ddb643495f7f4cd35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keys: {fileID: 0}
-  folders: {fileID: 0}
   inventory: {fileID: 0}
   size: 80
 --- !u!114 &114534434941096290
