@@ -15,11 +15,9 @@ public class InventoryBehaviour : MonoBehaviour {
 
 	}
 
-	// Update is called once per frame
-	void Update () {
 
-		// if touching a key collider
-		// set relevant colour to true
-
+	public void playPickupSound() {
+		AudioSource pickupSound = GetComponent<AudioSource>();
+		pickupSound.Play();
 	}
 }

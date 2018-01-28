@@ -11,14 +11,17 @@ public class KeyBehaviour : MonoBehaviour {
 		if (virus != null) {
 			if (colour == "red" && virus.inventory.redKey != true) {
 				virus.inventory.redKey = true;
+				virus.inventory.playPickupSound();
 				Destroy(this.gameObject);
 			}
 			else if (colour == "yellow" && virus.inventory.yellowKey != true) {
 				virus.inventory.yellowKey = true;
+				virus.inventory.playPickupSound();
 				Destroy(this.gameObject);
 			}
 			else if (colour == "blue" && virus.inventory.blueKey != true) {
 				virus.inventory.blueKey = true;
+				virus.inventory.playPickupSound();
 				Destroy(this.gameObject);
 			}
 		}
