@@ -77,7 +77,7 @@ public class VirusMovementBehaviour : MonoBehaviour {
 
 	void changeAnimation() {
 		if (invincible) {
-			
+
 		} else {
 
 		}
@@ -141,11 +141,14 @@ public class VirusMovementBehaviour : MonoBehaviour {
 		}
 	}
 
-	public void gainSize(int n) {
+	public bool gainSize(int n) {
+		if (size >= 80) return false;
+
 		size += n;
 		if (size > 80) {
 			size = 80;
 		}
+		return true;
 	}
 
 	public void lose() {
