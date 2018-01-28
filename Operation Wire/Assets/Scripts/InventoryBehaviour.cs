@@ -14,4 +14,10 @@ public class InventoryBehaviour : MonoBehaviour {
 		redKey = yellowKey = blueKey = false;
 
 	}
+
+
+	public void playPickupSound() {
+		AudioSource pickupSound = GetComponent<AudioSource>();
+		pickupSound.Play();
+	}
 }
