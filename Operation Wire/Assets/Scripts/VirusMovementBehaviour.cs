@@ -12,7 +12,7 @@ public class VirusMovementBehaviour : MonoBehaviour {
 	public GameObject folders;
 	public InventoryBehaviour inventory;
 
-	private float size;
+	public float size;
 	private bool colliding;
 
 	private float xSpeed;
@@ -93,9 +93,17 @@ public class VirusMovementBehaviour : MonoBehaviour {
 	}
 
 
-	public void setSize(int n) {
-		if (n > 0 && n <= 5) {
-			size = n;
+	public void loseSize(int n) {
+		size -= n;
+		if (size < 0) {
+			size = 0;
+		}
+	}
+
+	public void gainSize(int n) {
+		size += n;
+		if (size > 80) {
+			size = 80;
 		}
 	}
 

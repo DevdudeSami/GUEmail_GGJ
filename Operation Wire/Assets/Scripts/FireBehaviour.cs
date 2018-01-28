@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class FireBehaviour : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	void OnTriggerEnter2D(Collider2D coll) {
+		VirusMovementBehaviour virus = coll.gameObject.GetComponent<VirusMovementBehaviour>();
+		if (virus != null) {
+			virus.loseSize(5);
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }
