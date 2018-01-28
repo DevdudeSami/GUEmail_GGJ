@@ -12,7 +12,7 @@ public class VirusMovementBehaviour : MonoBehaviour {
 	public GameObject folders;
 	public InventoryBehaviour inventory;
 
-	public float size;
+	private float size;
 	private bool colliding;
 
 	private float xSpeed;
@@ -67,11 +67,7 @@ public class VirusMovementBehaviour : MonoBehaviour {
 		// ySpeed= 0;
 		if (coll.gameObject.GetComponent<EnemyBehaviour>()) lose();
 		KeyBehaviour key = coll.gameObject.GetComponent<KeyBehaviour>();
-		if (key != null) {
-			if (key.colour == "red" && this.inventory.redKey != true) this.inventory.redKey = true;
-			else if (key.colour == "yellow" && this.inventory.yellowKey != true) this.inventory.yellowKey = true;
-			else if (key.colour == "blue" && this.inventory.blueKey != true) this.inventory.blueKey = true;
-		}
+
 		FolderBehaviour folder = coll.gameObject.GetComponent<FolderBehaviour>();
 		if (folder != null) {
 			if (folder.locked == true) {
