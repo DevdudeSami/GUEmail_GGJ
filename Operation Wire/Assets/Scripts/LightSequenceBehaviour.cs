@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class LightSequenceBehaviour : MonoBehaviour {
 
@@ -31,6 +32,8 @@ public class LightSequenceBehaviour : MonoBehaviour {
 
 	public Sprite[] backgrounds;
 	private Image image;
+
+	private bool lost = false;
 
 	// Use this for initialization
 	void Start () {
@@ -105,6 +108,11 @@ public class LightSequenceBehaviour : MonoBehaviour {
 	}
 
 	void reset() {
+		if(lost) {
+
+			SceneManager.LoadScene("Level 1", LoadSceneMode.Single);
+		}
+
 		shouldAllLightsBeGreen = false;
         shouldAllLightsBeRed = false;
 
@@ -119,6 +127,7 @@ public class LightSequenceBehaviour : MonoBehaviour {
 	}
 
 	bool checkInput() {
+		lost = !clickedLights.SequenceEqual(steps);
 		return clickedLights.SequenceEqual(steps);
 	}
 	
