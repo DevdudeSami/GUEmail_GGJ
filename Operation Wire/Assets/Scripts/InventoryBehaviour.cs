@@ -22,4 +22,10 @@ public class InventoryBehaviour : MonoBehaviour {
 		// set relevant colour to true
 
 	}
+
+	public void playPickupSound() {
+		AudioSource pickupSound = GetComponent<AudioSource>();
+		pickupSound.Play();
+	}
+
 }
