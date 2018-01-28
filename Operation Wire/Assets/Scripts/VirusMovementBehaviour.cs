@@ -6,6 +6,7 @@ public class VirusMovementBehaviour : MonoBehaviour {
 
 
 	private const float speed = 2f;
+	private RigidBody2D rb;
 
 	public GameObject keys;
 	public GameObject folders;
@@ -30,6 +31,7 @@ public class VirusMovementBehaviour : MonoBehaviour {
 
 	void Awake () {
 		inventory = this.gameObject.GetComponent<InventoryBehaviour>();
+		rb = this.gameObject.GetComponent<RigidBody2D>();
 	}
 
 	void Update () {
@@ -48,7 +50,7 @@ public class VirusMovementBehaviour : MonoBehaviour {
             xSpeed = speed;
         }
 
-        if (Input.GetKey(KeyCode.UpArrow) && canMoveY) {
+        if (Input.GetKey(KeyCode.UpArrow)) {
             ySpeed = speed;
         } else if (Input.GetKey(KeyCode.DownArrow)) {
             ySpeed = -speed;
